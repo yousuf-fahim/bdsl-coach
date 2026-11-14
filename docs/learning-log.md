@@ -109,3 +109,21 @@ Interpretation: `results/comparison_interpretation.md`.
 1. *Why touch the test set only once?* Each look at test results tempts you to tweak the model toward them. Then the test score is no longer an unbiased estimate of performance on new data.
 2. *Your landmark approach lost. Is the project a failure?* No. It matches a from-scratch CNN with 1/20th the parameters when the hand is detected. Its weak point (detection) is measured and reported. A pretrained CNN winning on in-distribution accuracy is a valid, explainable result.
 3. *Is the latency comparison fair?* Partly. The CNNs were timed on images already cropped to the hand. In a webcam app they'd also need a hand detector, which approach B gets from MediaPipe. We report classifier-only and end-to-end times separately for that reason.
+
+## Phase 6: Robustness (2026-11-14)
+
+**What we did:** applied 7 perturbations at 5 severities each to every test image, re-running MediaPipe each time for approach B (`src/robustness.py`, `results/robustness_all.png`, `results/robustness_summary.csv`, `results/robustness_examples.png`). Results at the middle severity (3) versus clean accuracy:
+- **MobileNet:** loses at most 17 points (occlusion), and 1 point or less for darker, rotation and JPEG.
+- **Custom CNN:** collapses under blur (−55 points) and noise (−29).
+- **Landmark MLP:** collapses under noise, where MediaPipe detects only 3% of hands at σ = 35 (−68.5 points), and loses about 50 points when much brighter. It stays stable under rotation (−3) and JPEG (−3), and degrades more slowly than the custom CNN under blur.
+
+We also wrote `src/capture_own.py` and `src/eval_own.py` for webcam photos of a new person. That evaluation is **PENDING** until Fahim takes the photos.
+
+**Why:** a model used in a real room will see dim light, blur and cheap cameras. Clean test accuracy doesn't show how gracefully a model fails.
+
+**Key concept: a pipeline is only as strong as its weakest stage.** We expected landmarks to be robust because they ignore background and colour. But approach B is two stages, a hand detector and then a classifier. When the hand *is* found, the MLP's accuracy holds up fairly well: 75.5% clean, 61–76% at severity 3 for blur, darker, rotation and JPEG. But noise and over-exposure make MediaPipe miss the hand entirely, and then the classifier never gets a chance. MobileNet, pretrained on millions of varied photos, has learned features that tolerate these changes. **The plan's hypothesis that B would be more robust was not supported on this data,** and that's a valid, reportable finding.
+
+**Likely faculty questions**
+1. *Why did the "background-independent" approach turn out less robust?* Its features are background-independent, but its hand *detector* isn't perturbation-proof. Most of B's losses are detection failures (dotted line in `robustness_all.png`), not wrong classifications.
+2. *Are these perturbations realistic?* Darker, brighter, blur, JPEG and small rotations are common with webcams. Strong noise is less common, and our noise is applied to small crops, so that test may be harsh (QUESTIONS.md Q6.2). Your own webcam photos will be the real test.
+3. *Does this mean the demo should use MobileNet?* On this dataset the evidence favours it. It would need a hand cropper (MediaPipe again) in front of it, and it's untested on new people. That decision is left open (QUESTIONS.md Q6.1).

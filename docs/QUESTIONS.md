@@ -83,3 +83,16 @@ Each entry: what came up, the options, what I chose, and how to change it.
 ## Q4.3 MobileNet's very high validation accuracy (Phase 4), to keep in mind
 - MobileNetV3-small reaches 97.5% on validation. Our split keeps capture sessions apart, but the same 14 signers (and probably their rooms) appear in all splits. Some of the accuracy may come from recognising people and backgrounds. The colour-only 1-NN still scores 17% versus 2% chance, so that signal exists.
 - **How we check it:** the Phase 6 robustness tests (lighting, occlusion and so on) and your own webcam photos (`data/own/`, PENDING) test exactly this. I haven't changed anything because of it.
+
+## Q6.1 Which model should the demo use? Needs your decision later (Phase 6)
+- **What came up:** the plan ships the landmark MLP (approach B) in the browser. But on this dataset MobileNetV3-small is more accurate (97.2% vs 68.6% end-to-end on test) **and** more robust under every perturbation we tried (`results/robustness_summary.csv`). Approach B mostly fails because MediaPipe stops detecting the hand under noise, brightness changes and occlusion.
+- **Options:**
+  - (a) Keep the landmark MLP, as the phase prompts specify: tiny classifier, background-independent features, and it already ships the hand skeleton.
+  - (b) Hybrid: use MediaPipe to find and crop the hand, then run MobileNet (exported to ONNX, about 6 MB) on the crop. MobileNet was trained on hand crops, so it needs a cropper on webcam frames anyway.
+  - (c) Run both and show both predictions.
+- **Chosen for now:** (a). The Phase 8 prompt asks for the landmark model, and the decisive test, your own webcam photos (`data/own/`, a new person, room and camera), is still PENDING. The report presents this as an open trade-off, not as "B is better".
+- **To change:** ask me to add option (b). It needs an ONNX export of MobileNet, a crop step in `web/src/pipeline.js` and a new parity test.
+
+## Q6.2 Robustness method notes (Phase 6)
+- Perturbations are applied to each test image after shrinking it to at most 640 px. Many dataset crops are smaller than that, so pixel noise is relatively coarse on them, which may make the noise test harsher than real camera-sensor noise. MediaPipe is re-run on every perturbed image, and approach B is scored end-to-end.
+- Own-webcam evaluation: **PENDING.** `src/capture_own.py` and `src/eval_own.py` are ready. `eval_own.py` was self-tested on 6 validation images that were then removed. It writes `results/own_eval.json`, which currently says PENDING.
