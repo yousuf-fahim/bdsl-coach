@@ -38,7 +38,13 @@ EPOCHS, PATIENCE, BATCH, LR, WD = 300, 30, 128, 1e-3, 1e-4
 class LandmarkMLP(nn.Module):
     """input -> 256 -> 128 -> classes. BatchNorm steadies training; Dropout fights overfitting."""
 
-    def __init__(self, d_in=131, n_classes=N_CLASSES, h1=256, h2=128, p=0.3):
+    # Module-level defaults so capacity_check() can try other sizes.
+    SIZES = {"h1": 256, "h2": 128, "p": 0.3}
+
+    def __init__(self, d_in=131, n_classes=N_CLASSES, h1=None, h2=None, p=None):
+        h1 = h1 or self.SIZES["h1"]
+        h2 = h2 or self.SIZES["h2"]
+        p = self.SIZES["p"] if p is None else p
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(d_in, h1), nn.BatchNorm1d(h1), nn.ReLU(), nn.Dropout(p),
@@ -128,6 +134,19 @@ def train_mlp(Xtr, ytr, Xva, yva, use_aug, log_name):
     return model, best, hist
 
 
+def capacity_check(Xtr, ytr, Xva, yva):
+    """Is the MLP too small? Try wider nets / less dropout (validation only)."""
+    out = []
+    for h1, h2, p in ((256, 128, 0.3), (256, 128, 0.1), (512, 256, 0.2), (512, 256, 0.1)):
+        LandmarkMLP.SIZES = {"h1": h1, "h2": h2, "p": p}
+        m, best, _ = train_mlp(Xtr, ytr, Xva, yva, True, f"capacity_{h1}_{h2}_p{p}")
+        train_acc = float((predict(m, Xtr) == ytr).mean())
+        out.append({"h1": h1, "h2": h2, "dropout": p, "val_acc": best["val_acc"],
+                    "train_acc_eval_mode": train_acc, "parameters": sum(q.numel() for q in m.parameters())})
+    LandmarkMLP.SIZES = {"h1": 256, "h2": 128, "p": 0.3}
+    save_json(out, RESULTS / "landmark_mlp_capacity.json")
+
+
 def predict(model, X):
     model.eval()
     with torch.no_grad():
@@ -202,6 +221,8 @@ def main():
     fig.tight_layout()
     fig.savefig(RESULTS / "landmark_mlp_curves.png", dpi=130)
     plt.close(fig)
+
+    capacity_check(Xtr, ytr, Xva, yva)
 
 
 if __name__ == "__main__":

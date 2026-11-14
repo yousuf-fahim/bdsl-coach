@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "model": "logistic_regression",
+      "val_acc_detected": 0.7350515463917526,
+      "val_acc_end_to_end": 0.6550298576022049,
+      "val_macro_f1_detected": 0.7230088896679986,
+      "train_seconds": 1.4624691009521484
+    },
+    {
+      "model": "random_forest",
+      "val_acc_detected": 0.7211340206185567,
+      "val_acc_end_to_end": 0.6426274689940285,
+      "val_macro_f1_detected": 0.7113096413503678,
+      "train_seconds": 2.5062077045440674
+    },
+    {
+      "model": "mlp_no_aug",
+      "val_acc_detected": 0.7731958762886598,
+      "val_acc_end_to_end": 0.6890215893431327,
+      "val_macro_f1_detected": 0.7648616329439449,
+      "train_seconds": 12.689749479293823,
+      "best_epoch": 74,
+      "epochs_run": 104
+    },
+    {
+      "model": "mlp_aug",
+      "val_acc_detected": 0.7902061855670103,
+      "val_acc_end_to_end": 0.7041800643086816,
+      "val_macro_f1_detected": 0.7866811585063445,
+      "train_seconds": 20.212366819381714,
+      "best_epoch": 111,
+      "epochs_run": 141
+    }
+  ],
+  "selected": "mlp_aug",
+  "mlp_parameters": 73777,
+  "train_images_detected": 8993,
+  "val_images_detected": 1940,
+  "val_images_total": 2177,
+  "hyperparameters": {
+    "epochs_max": 300,
+    "patience": 30,
+    "batch": 128,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "dropout": 0.3
+  },
+  "class_weights": "not used: class sizes differ by at most 8% (results/audit_summary.json)"
+}

@@ -43,3 +43,25 @@ One entry per phase, written by Claude Code: what we did, why, the key concept i
 1. *What is MediaPipe doing?* Two networks: a palm detector finds the hand's bounding box, then a landmark model predicts 21 3D keypoints inside it. We use it as a frozen feature extractor. Only our MLP is trained.
 2. *Why not mirror both hands in two-handed signs?* Mirroring each hand separately would break how the hands relate spatially. We instead order the hands left-to-right and add the offset between their wrists.
 3. *What about the 10.8% of images with no detection?* That's a real weakness of approach B. In Phase 5 we report accuracy both on detected images and with failures counted as errors, so it isn't hidden.
+
+## Phase 3: Landmark MLP, approach B (2026-11-14)
+
+**What we did:** trained classifiers on the 131-number landmark vectors (`src/train_landmark_mlp.py`), validation set only (`results/landmark_mlp_val.json`):
+
+| Model | Val acc (detected images) | Counting undetected as errors |
+|---|---|---|
+| Logistic regression | 73.5% | 65.5% |
+| Random forest | 72.1% | 64.3% |
+| MLP, no augmentation | 77.3% | 68.9% |
+| **MLP + augmentation** | **79.0%** | **70.4%** |
+
+The selected MLP has 73,777 parameters and trains in about 20 seconds on a CPU. Class weights weren't needed, since class sizes differ by at most 8%.
+
+**Why:** the classical baselines show how much the neural network adds over simple models: about 5.5 points over logistic regression. Augmentation adds about 1.7 more.
+
+**Key concept: overfitting vs. underfitting.** Overfitting means training accuracy keeps rising while validation accuracy stalls or falls: the network memorises. Our curves (`results/landmark_mlp_curves.png`) show train and validation tracking closely. Making the network bigger didn't help either: 512→256 hidden units scored 77.6% on validation (`results/landmark_mlp_capacity.json`). So the ceiling is the information in the features, not model size. Some signs differ in ways 21 noisy keypoints can't capture well (overlapping hands, edge-on views). Augmentation adds small random rotations, stretches and noise to the landmark coordinates, which teaches the network that those changes don't alter the sign.
+
+**Likely faculty questions**
+1. *Why AdamW and early stopping?* AdamW adapts the step size per weight and applies weight decay correctly. Early stopping keeps the weights from the epoch with the lowest validation loss, before overfitting starts.
+2. *Why is the MLP better than logistic regression?* Logistic regression can only draw straight boundaries between classes. The MLP's hidden layers with ReLU can learn curved boundaries, which helps with combinations like "this finger bent AND that one straight".
+3. *Why report two accuracies?* The MLP can only classify images where MediaPipe found a hand. "End-to-end" accuracy counts the roughly 11% detection failures as errors, which is what a user would actually experience.
