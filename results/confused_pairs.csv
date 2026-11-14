@@ -1,0 +1,21 @@
+approach,model,rank,class_a,class_b,a_idx,b_idx,a_predicted_as_b,b_predicted_as_a,total
+A,MobileNetV3-small,1,৭,৮,43,44,11,0,11
+A,MobileNetV3-small,2,র,ল,28,29,3,2,5
+A,MobileNetV3-small,3,ম,ন,26,30,0,5,5
+A,MobileNetV3-small,4,র,ন,28,30,2,2,4
+A,MobileNetV3-small,5,উ,এ,3,4,1,2,3
+A,MobileNetV3-small,6,১,২,37,38,2,0,2
+A,MobileNetV3-small,7,ং,০,34,36,0,2,2
+A,MobileNetV3-small,8,য়,◌্,27,46,2,0,2
+A,MobileNetV3-small,9,ব,ড়,24,33,0,2,2
+A,MobileNetV3-small,10,ত,ং,18,34,2,0,2
+B,Landmark MLP,1,র,ল,28,29,19,2,21
+B,Landmark MLP,2,ল,ন,29,30,2,18,20
+B,Landmark MLP,3,ঝ,ফ,13,23,7,13,20
+B,Landmark MLP,4,উ,এ,3,4,8,11,19
+B,Landmark MLP,5,উ,ও,3,5,8,10,18
+B,Landmark MLP,6,য়,◌্,27,46,17,0,17
+B,Landmark MLP,7,ট,৭,14,43,5,11,16
+B,Landmark MLP,8,অ,ই,0,2,4,11,15
+B,Landmark MLP,9,র,ন,28,30,12,1,13
+B,Landmark MLP,10,ভ,ঃ,25,35,12,1,13

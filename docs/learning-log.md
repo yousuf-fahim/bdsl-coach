@@ -127,3 +127,21 @@ We also wrote `src/capture_own.py` and `src/eval_own.py` for webcam photos of a 
 1. *Why did the "background-independent" approach turn out less robust?* Its features are background-independent, but its hand *detector* isn't perturbation-proof. Most of B's losses are detection failures (dotted line in `robustness_all.png`), not wrong classifications.
 2. *Are these perturbations realistic?* Darker, brighter, blur, JPEG and small rotations are common with webcams. Strong noise is less common, and our noise is applied to small crops, so that test may be harsh (QUESTIONS.md Q6.2). Your own webcam photos will be the real test.
 3. *Does this mean the demo should use MobileNet?* On this dataset the evidence favours it. It would need a hand cropper (MediaPipe again) in front of it, and it's untested on new people. That decision is left open (QUESTIONS.md Q6.1).
+
+## Phase 7: Error analysis (2026-11-14)
+
+**What we did:** analysed the saved test predictions (`src/error_analysis.py`). The written interpretation is in `results/error_analysis.md`. We produced:
+- confusion matrices for the best model of each approach: MobileNet (chosen by validation accuracy) and the landmark MLP
+- the top-10 confused pairs, with example images
+- landmark distances between the class averages of the confused pairs
+- Grad-CAM on 20 MobileNet predictions
+- accuracy per capture block, as a stand-in for per-signer accuracy (signer IDs don't exist)
+
+**Why:** a single accuracy number hides *which* signs fail and *why*. Error analysis tells you what to fix next and which letters a learner needs most help with.
+
+**Key concept: Grad-CAM and "is the model right for the right reason?"** Grad-CAM asks which regions of the last convolutional feature maps pushed the score of the predicted class up. It colours those regions on the image. MobileNet's heat sits on the hands and fingers, not the background (`results/gradcam.png`), which supports (but doesn't prove) that it learned hand shape. For the landmark model, distances between class-average landmark vectors explain its confusions directly. Its worst pairs (উ-এ, র-ন, র-ল, ল-ন, ঝ-ফ) are all in the closest 1% of the 1,176 class pairs. These are two-hand signs where one hand's finger touches a different spot on the other hand.
+
+**Likely faculty questions**
+1. *Which signs are hardest and why?* The র/ল/ন and উ/এ/ও families: a flat or open hand touched by a finger of the other hand at slightly different positions. In landmark space their averages are 5–13× closer than a typical class pair (0.43–1.18 versus a median of 5.48).
+2. *Is MobileNet's top error (৭→৮) a model weakness?* Partly a session effect: 6 of its 11 errors come from one 15-image capture block. Most of MobileNet's errors are spread thin.
+3. *Why no per-signer accuracy?* BDSL 49 doesn't record who signed each image. Per capture block is the closest stand-in, and it shows large session-to-session variation for the weaker models: some blocks score 0%.
