@@ -121,3 +121,4 @@ Then go to **Settings → Pages → Source: Deploy from a branch → Branch: `gh
 | "Could not load the models" + 404s in the browser console | The upload is missing `models/`, `mediapipe-wasm/` or `ort/`. Upload the whole `dist` folder. |
 | Works locally, blank on GitHub Pages | An absolute base path is in use. Keep `base: "./"` (see "Base path" above). |
 | Slow on an old phone | Expected. MediaPipe runs on the CPU in wasm. Close other tabs. |
+| Locally, "both async and sync fetching of the wasm failed" | Don't test with `python -m http.server`: it was too slow serving the 14 MB wasm files in our test, and the browser's fetch failed. Use `npm run preview` (or any normal static host). With a proper static server, the build was verified to load correctly from a sub-path (`/bdsl-coach/`), the same situation as GitHub Pages. |
