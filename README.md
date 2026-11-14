@@ -5,7 +5,7 @@ Recognise **Bangla Sign Language (BdSL)** letter and digit signs from your webca
 - **Approach A, CNNs on images:** a small custom CNN trained from scratch, and an ImageNet-pretrained **MobileNetV3-small** fine-tuned on our data.
 - **Approach B, hand landmarks + MLP:** Google **MediaPipe** finds 21 3D keypoints per hand, and a 74k-parameter **MLP** trained from scratch classifies the normalised keypoints.
 
-**Live demo:** _TODO: add the URL after deploying (see [docs/DEPLOY.md](docs/DEPLOY.md))._
+**Live demo:** https://yousuf-fahim.github.io/bdsl-coach/ (open on a device with a webcam and allow the camera. Deploy steps are in [docs/DEPLOY.md](docs/DEPLOY.md))
 
 ![Demo: the built web app running in headless Edge with a fake camera fed by validation images](docs/demo.gif)
 

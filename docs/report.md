@@ -2,7 +2,7 @@
 
 *Neural Network Lab project. Yousuf Sharif Fahim, Dept. of CSE, BUBT. November 2026.*
 
-> **Status of this report.** Every number comes from a file in `results/` produced by a script in `src/`. Two items are **pending** and clearly marked: (1) evaluation on the author's own webcam photos (Section 6.3), and (2) verification of the class-to-letter mapping by a BdSL-literate reader (Section 2.1). The live demo URL is added after deployment.
+> **Status of this report.** Every number comes from a file in `results/` produced by a script in `src/`. Two items are **pending** and clearly marked: (1) evaluation on the author's own webcam photos (Section 6.3), and (2) verification of the class-to-letter mapping by a BdSL-literate reader (Section 2.1). **Live demo:** https://yousuf-fahim.github.io/bdsl-coach/
 
 ## Abstract
 
