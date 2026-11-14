@@ -1,0 +1,25 @@
+{
+  "fake_video": true,
+  "requests": [
+    "/",
+    "/assets/index-B4o42ZZ-.js",
+    "/assets/index-PUwXLUHA.css",
+    "/assets/noto-sans-bengali-bengali-400-normal-BFibWJDZ.woff2",
+    "/assets/noto-sans-bengali-bengali-700-normal-C0v9szhP.woff2",
+    "/mediapipe-wasm/vision_wasm_internal.js",
+    "/mediapipe-wasm/vision_wasm_internal.wasm",
+    "/models/config.json",
+    "/models/hand_landmarker.task",
+    "/models/landmark_mlp.onnx",
+    "/ort/ort-wasm-simd-threaded.mjs",
+    "/ort/ort-wasm-simd-threaded.wasm"
+  ],
+  "external_requests": [],
+  "console_errors": [],
+  "failed_requests": [],
+  "load_error": null,
+  "models_loaded_ms": 843,
+  "fps": 25.666666666666668,
+  "top3_visible": 3,
+  "pass": true
+}

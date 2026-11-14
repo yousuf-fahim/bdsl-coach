@@ -1,0 +1,27 @@
+{
+  "name": "bdsl-coach-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "In-browser BdSL alphabet recognition: MediaPipe hand landmarks + a small MLP (ONNX). Pure static site.",
+  "scripts": {
+    "copy-assets": "node scripts/copy-assets.mjs",
+    "dev": "npm run copy-assets && vite",
+    "build": "npm run copy-assets && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "test:normalize": "node --test tests/normalize.test.mjs",
+    "test:parity": "node tests/parity.mjs",
+    "test:smoke": "node tests/smoke.mjs",
+    "report:pdf": "node scripts/report-pdf.mjs ../docs/report.md"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-bengali": "5.3.0",
+    "@mediapipe/tasks-vision": "1.2.0",
+    "onnxruntime-web": "1.31.1"
+  },
+  "devDependencies": {
+    "marked": "18.1.2",
+    "playwright": "1.64.1",
+    "vite": "8.3.5"
+  }
+}

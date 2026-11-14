@@ -1,0 +1,7 @@
+{
+  "samples": 20,
+  "max_abs_logit_diff": 7.62939453125e-06,
+  "same_predictions": true,
+  "onnx_kb": 292.7294921875,
+  "opset": 17
+}

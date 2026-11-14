@@ -145,3 +145,26 @@ We also wrote `src/capture_own.py` and `src/eval_own.py` for webcam photos of a 
 1. *Which signs are hardest and why?* The র/ল/ন and উ/এ/ও families: a flat or open hand touched by a finger of the other hand at slightly different positions. In landmark space their averages are 5–13× closer than a typical class pair (0.43–1.18 versus a median of 5.48).
 2. *Is MobileNet's top error (৭→৮) a model weakness?* Partly a session effect: 6 of its 11 errors come from one 15-image capture block. Most of MobileNet's errors are spread thin.
 3. *Why no per-signer accuracy?* BDSL 49 doesn't record who signed each image. Per capture block is the closest stand-in, and it shows large session-to-session variation for the weaker models: some blocks score 0%.
+
+## Phase 8: Browser demo, static and self-hosted (2026-11-14)
+
+**What we did:** built `web/`, a pure static site with no server code and a relative `./` base, using Vite.
+- **How it works:** MediaPipe HandLandmarker turns each camera frame into landmarks. `normalize.js` (a line-by-line port of the Python normalisation) turns those into features, and our MLP runs as ONNX in ONNX Runtime Web. Everything is self-hosted, with no CDN: the MediaPipe wasm, the hand model, the ONNX model, the ONNX Runtime wasm and the Bangla font.
+- **UI:** a mirrored webcam view with a skeleton overlay, top-3 predictions smoothed over 5 frames, and a Practice mode that turns green after a 0.5 s hold above 70% confidence.
+- **Deploy docs:** `docs/DEPLOY.md` covers Cloudflare Pages and GitHub Pages (no Vercel, at Fahim's request). There's also a ready GitHub Actions workflow.
+
+**Tests (all pass):**
+- ONNX vs PyTorch, max logit difference 7.6×10⁻⁶ (`results/onnx_parity.json`)
+- JS vs Python normalisation, difference exactly 0
+- ONNX Runtime Web vs PyTorch, 7.6×10⁻⁶
+- MediaPipe JS vs Python on the same 20 images: same hand count 20/20, same prediction 16/16 (`results/web_parity.json`)
+- the built site in headless Edge with a fake camera: models load, frames are processed, 0 external requests, no console errors (`results/web_smoke.json`)
+
+**Why:** the most common bug in ML demos is a *preprocessing mismatch*: the browser prepares the input slightly differently from training, and accuracy silently drops. The parity tests compare the two pipelines number by number.
+
+**Key concept: train/serve skew and mirroring.** A model only works on inputs prepared exactly like its training data. Webcams show a mirrored selfie view, but the dataset photos are un-mirrored. So we feed MediaPipe the **raw** frame, mirror only the *display* with CSS, and mirror the landmark overlay the same way so it lines up. Handedness comes from the un-mirrored frame, as it did in training.
+
+**Likely faculty questions**
+1. *How do you know the browser gives the same answer as Python?* An automated headless-browser test feeds the same 20 inputs through both pipelines. Features are identical, logits differ by under 10⁻⁵, and predictions match.
+2. *Does the camera feed go to a server?* No. There's no server at all. MediaPipe and the MLP run in WebAssembly on the user's device, and the smoke test confirms the page makes no requests to other hosts.
+3. *Why ONNX?* It's a standard, framework-neutral model format. PyTorch exports it, and ONNX Runtime Web runs it in the browser without rewriting the network by hand.

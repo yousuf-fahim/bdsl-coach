@@ -18,3 +18,9 @@ __pycache__/
 web/dist/
 .vercel/
 logs/
+
+# Web: wasm runtimes are copied from node_modules at build time (scripts/copy-assets.mjs)
+web/public/mediapipe-wasm/
+web/public/ort/
+# Parity fixture images are derived from the dataset (never committed)
+web/tests/fixtures/images/

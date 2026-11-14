@@ -1,0 +1,299 @@
+{
+  "A_same_landmarks": {
+    "samples": 20,
+    "feature_max_diff": 0,
+    "logit_max_diff": 0.00000762939453125,
+    "same_predictions": true
+  },
+  "A_pass": true,
+  "B_mediapipe_js_vs_python": {
+    "samples": 20,
+    "same_hand_count": 20,
+    "both_detected": 16,
+    "same_prediction_when_both_detected": 16,
+    "median_feature_diff_same_hand_count": 0.0002194046974182129,
+    "errors": []
+  },
+  "rows": [
+    {
+      "id": 0,
+      "label": 4,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000762939453125,
+      "py_pred": 4,
+      "js_pred": 4,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 4,
+        "max_feature_diff": 0.00024569034576416016
+      }
+    },
+    {
+      "id": 1,
+      "label": 25,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000476837158203125,
+      "py_pred": 25,
+      "js_pred": 25,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 25,
+        "max_feature_diff": 0.00026404857635498047
+      }
+    },
+    {
+      "id": 2,
+      "label": 34,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000762939453125,
+      "py_pred": 34,
+      "js_pred": 34,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 34,
+        "max_feature_diff": 0.0002863854169845581
+      }
+    },
+    {
+      "id": 3,
+      "label": 22,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000762939453125,
+      "py_pred": 22,
+      "js_pred": 22,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 22,
+        "max_feature_diff": 0.00005009770393371582
+      }
+    },
+    {
+      "id": 4,
+      "label": 15,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000003814697265625,
+      "py_pred": 15,
+      "js_pred": 15,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 15,
+        "max_feature_diff": 0.00020759552717208862
+      }
+    },
+    {
+      "id": 5,
+      "label": 15,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 15,
+      "js_pred": 15,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 15,
+        "max_feature_diff": 0.00024205446243286133
+      }
+    },
+    {
+      "id": 6,
+      "label": 4,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 4,
+      "js_pred": 4,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 4,
+        "max_feature_diff": 0.00010907649993896484
+      }
+    },
+    {
+      "id": 7,
+      "label": 29,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 29,
+      "js_pred": 29,
+      "e2e": {
+        "js_hands": 2,
+        "py_hands": 2,
+        "js_pred": 29,
+        "max_feature_diff": 0.001359701156616211
+      }
+    },
+    {
+      "id": 8,
+      "label": 26,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000019073486328125,
+      "py_pred": 31,
+      "js_pred": 31,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 31,
+        "max_feature_diff": 0.0002194046974182129
+      }
+    },
+    {
+      "id": 9,
+      "label": 40,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 40,
+      "js_pred": 40,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 40,
+        "max_feature_diff": 0.0003215670585632324
+      }
+    },
+    {
+      "id": 10,
+      "label": 29,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000019073486328125,
+      "py_pred": 29,
+      "js_pred": 29,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 29,
+        "max_feature_diff": 0.00008931756019592285
+      }
+    },
+    {
+      "id": 11,
+      "label": 21,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 21,
+      "js_pred": 21,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 21,
+        "max_feature_diff": 0.0001347064971923828
+      }
+    },
+    {
+      "id": 12,
+      "label": 5,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000003814697265625,
+      "py_pred": 5,
+      "js_pred": 5,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 5,
+        "max_feature_diff": 0.00004330277442932129
+      }
+    },
+    {
+      "id": 13,
+      "label": 42,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.0000057220458984375,
+      "py_pred": 33,
+      "js_pred": 33,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 33,
+        "max_feature_diff": 0.0007047653198242188
+      }
+    },
+    {
+      "id": 14,
+      "label": 28,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000286102294921875,
+      "py_pred": 29,
+      "js_pred": 29,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 29,
+        "max_feature_diff": 0.000026464462280273438
+      }
+    },
+    {
+      "id": 15,
+      "label": 10,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.00000286102294921875,
+      "py_pred": 10,
+      "js_pred": 10,
+      "e2e": {
+        "js_hands": 1,
+        "py_hands": 1,
+        "js_pred": 10,
+        "max_feature_diff": 0.00017657876014709473
+      }
+    },
+    {
+      "id": 16,
+      "label": 7,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000001430511474609375,
+      "py_pred": null,
+      "js_pred": null,
+      "e2e": {
+        "js_hands": 0,
+        "py_hands": 0,
+        "js_pred": null,
+        "max_feature_diff": 0
+      }
+    },
+    {
+      "id": 17,
+      "label": 13,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000001430511474609375,
+      "py_pred": null,
+      "js_pred": null,
+      "e2e": {
+        "js_hands": 0,
+        "py_hands": 0,
+        "js_pred": null,
+        "max_feature_diff": 0
+      }
+    },
+    {
+      "id": 18,
+      "label": 23,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000001430511474609375,
+      "py_pred": null,
+      "js_pred": null,
+      "e2e": {
+        "js_hands": 0,
+        "py_hands": 0,
+        "js_pred": null,
+        "max_feature_diff": 0
+      }
+    },
+    {
+      "id": 19,
+      "label": 24,
+      "feature_max_diff": 0,
+      "logit_max_diff": 0.000001430511474609375,
+      "py_pred": null,
+      "js_pred": null,
+      "e2e": {
+        "js_hands": 0,
+        "py_hands": 0,
+        "js_pred": null,
+        "max_feature_diff": 0
+      }
+    }
+  ]
+}
