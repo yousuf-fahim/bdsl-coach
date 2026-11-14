@@ -30,3 +30,16 @@ One entry per phase, written by Claude Code: what we did, why, the key concept i
 1. *Why not just split randomly?* Neighbouring images are near-copies (same signer and background). A random split would inflate accuracy. Our colour-only baseline gains 24 points from a random split, without looking at the hand at all.
 2. *You don't have signer IDs, so how did you group?* We showed that image similarity fades with index distance and flattens at about 20–25 images, which suggests capture order. So we grouped 15-image blocks and gave each split contiguous runs. We also excluded 228 images (1.5%) so that no near-duplicate pair crosses splits.
 3. *Is the leakage fully removed?* No, and we say so. A signer can straddle a block boundary: 10.6% of test images have a training neighbour within 5 indices, versus 100% with a random split. True signer IDs would be needed to remove it completely.
+
+## Phase 2: Hand landmarks with MediaPipe (2026-11-14)
+
+**What we did:** ran Google's MediaPipe Hand Landmarker on all 14,486 kept images (1.5 min on 6 CPU cores). For each hand it gives 21 3D points (wrist, knuckles, fingertips). We turned these into a 131-number feature vector per image (`src/landmarks.py`). MediaPipe found at least one hand in 89.2% of images (`results/landmark_detection.json`). The hardest classes are "space" (39%), গ (65%) and ঝ (71%): hands seen edge-on, overlapping or interlocked (`results/landmark_failures.png`).
+
+**Why:** approach B never shows the classifier pixels, only hand geometry. Background, skin tone and lighting are thrown away by design, which should make it smaller and more robust.
+
+**Key concept: normalisation makes features invariant.** Raw coordinates depend on where the hand is in the frame and how close it is to the camera. We subtract the wrist position (translation invariance) and divide by the wrist-to-middle-knuckle distance (scale invariance). We also mirror a lone left hand so that left-handed signers look like right-handed ones. The classifier then only has to learn the hand shape, not every position and size it might appear at. We padded the tight dataset crops with a black border because MediaPipe's palm detector expects context around the hand. That alone raised detection from 75% to 83%, and lowering the confidence threshold to 0.3 took it to about 90%.
+
+**Likely faculty questions**
+1. *What is MediaPipe doing?* Two networks: a palm detector finds the hand's bounding box, then a landmark model predicts 21 3D keypoints inside it. We use it as a frozen feature extractor. Only our MLP is trained.
+2. *Why not mirror both hands in two-handed signs?* Mirroring each hand separately would break how the hands relate spatially. We instead order the hands left-to-right and add the offset between their wrists.
+3. *What about the 10.8% of images with no detection?* That's a real weakness of approach B. In Phase 5 we report accuracy both on detected images and with failures counted as errors, so it isn't hidden.

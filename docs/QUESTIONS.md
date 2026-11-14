@@ -52,3 +52,19 @@ Each entry: what came up, the options, what I chose, and how to change it.
 ## Q1.4 Scope: all 49 classes (Phase 1)
 - The project says "alphabet", but BDSL 49 also includes 10 digits and 3 special signs (ং, ঃ, ্) plus "space". I kept all 49 classes, as the dataset defines them.
 - **To change:** filter labels in `make_splits.py`.
+
+## Q2.1 MediaPipe detection settings (Phase 2)
+- **What came up:** with default settings, MediaPipe found a hand in only 75% of a 392-image train/val sample. The images are tight crops, and the palm detector expects some context around the hand.
+- **Chosen:** pad each image with 25% black border on every side and use confidence thresholds of 0.3 (detection and presence). That reached 90.6% on the sample and 89.2% on the full set. 50% padding detected slightly more (91.8%) but found both hands less often (27% vs 30%). The web demo uses the same 0.3 thresholds.
+- **To change:** edit `PAD_FRAC` / `MIN_DET_CONF` in `src/landmarks.py`, re-run `src/landmarks.py` (1.5 min), then retrain.
+
+## Q2.2 Feature design for two-handed signs (Phase 2)
+- **What came up:** the prompt says to mirror left hands to look like right hands. About 29% of images have two hands detected, and mirroring each hand separately would destroy how the two hands relate to each other.
+- **Chosen:**
+  - **One hand detected:** mirror it if MediaPipe calls it Left.
+  - **Two hands detected:** no mirroring. Order them left-to-right by wrist position, normalise each, and add hand 2's wrist offset relative to hand 1.
+  - Result: a 131-number vector (63 + 63 + 2 presence flags + 3 offset).
+- **To change:** `normalize_hands()` in `src/landmarks.py`. The JS port in Phase 8 must match it.
+
+## Q2.3 Undetected images (Phase 2)
+- **Chosen:** 1,558 images (10.8%) have no detected hand. They're excluded from MLP training and validation selection. In Phase 5 the test accuracy is reported both on detected images only and with every undetected image counted as an error.
