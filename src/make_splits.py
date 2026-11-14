@@ -143,8 +143,8 @@ def main():
     # 4b. Residual leakage: a same-class near-duplicate pair split across two sets.
     #     Exclude the member in the LARGER set (train > val > test), so the
     #     evaluation blocks stay intact. (Moving the val/test member into train
-    #     was tried first: it put train images inside test blocks and raised the
-    #     colour-only 1-NN test accuracy from 11% to 18%, i.e. more leakage.)
+    #     was tried first: it put train images inside test blocks, and 41% of test
+    #     images then had a same-class train neighbour within 5 indices vs 10.6% now.)
     rank = {"train": 0, "val": 1, "test": 2, "excluded": 3}
     same = pairs[pairs.same_class]
     moved = []  # excluded images

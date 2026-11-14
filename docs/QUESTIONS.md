@@ -42,7 +42,7 @@ Each entry: what came up, the options, what I chose, and how to change it.
   - Result: 68.7 / 14.8 / 15.0%.
 - **Rejected:**
   - (a) Merging blocks through near-duplicate links. The links chain together, and one class ended up 88% in val.
-  - (b) Moving leaking val/test images into train. That put train images inside test blocks, and the colour-only 1-NN rose from 11% to 18%.
+  - (b) Moving leaking val/test images into train. That put train images inside test blocks: 41% of test images then had a same-class train image within 5 numbers, versus 10.6% with the exclusion rule.
 - **Residual risk:** a signer can straddle a block boundary. 10.6% of test images have a train image of the same class within 5 numbers, versus 100% for a random split.
 - **To change:** edit `BLOCK` / `NEAR_DUP` in `src/make_splits.py` and re-run it.
 
