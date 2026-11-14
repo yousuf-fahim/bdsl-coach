@@ -1,4 +1,13 @@
-data/
+# Raw and personal image data is never committed (CLAUDE.md rule).
+data/raw/*
+!data/raw/.gitkeep
+data/own/*
+!data/own/.gitkeep
+# Large regenerable intermediates
+data/processed/*.npz
+data/processed/cache/
+# Small processed files (splits.csv, labels.json) ARE committed for reproducibility.
+
 .venv/
 node_modules/
 __pycache__/
@@ -8,3 +17,4 @@ __pycache__/
 .env
 web/dist/
 .vercel/
+logs/

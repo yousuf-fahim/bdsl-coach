@@ -1,0 +1,16 @@
+# Python 3.13 (MediaPipe 1.2.x ships a py3-none wheel, so 3.13 works).
+# Exact pinned versions are recorded in requirements-lock.txt after install.
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+opencv-python
+mediapipe
+torch
+torchvision
+onnx
+onnxruntime
+tqdm
+imagehash
+pillow
