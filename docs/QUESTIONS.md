@@ -68,3 +68,18 @@ Each entry: what came up, the options, what I chose, and how to change it.
 
 ## Q2.3 Undetected images (Phase 2)
 - **Chosen:** 1,558 images (10.8%) have no detected hand. They're excluded from MLP training and validation selection. In Phase 5 the test accuracy is reported both on detected images only and with every undetected image counted as an error.
+
+## Q4.1 Custom CNN too slow on CPU (Phase 4)
+- **What came up:** the first custom CNN design, with two 3×3 convolutions per block (1.19M parameters), measured 2.9 min per epoch, about 73 minutes for 25 epochs (`results/cnn_time_estimates_two_conv_custom.json`). That's over the 60-minute budget. MobileNetV3-small takes 0.5 min per epoch, about 13 minutes.
+- **Options:** fewer epochs, smaller images, Kaggle GPU, or a lighter block.
+- **Chosen:** one convolution per block (4 blocks, 32/64/128/256 channels, 401k parameters). That's 1.2 min per epoch, about 30 minutes for 25 epochs. It's still a "small custom CNN with 3–4 conv blocks", and it keeps the 128 px input and the full epoch budget. Kaggle wasn't needed.
+- **To change:** add the second `Conv2d` back in `SmallCNN` (`src/train_cnn.py`). For speed, run it on Kaggle.
+
+## Q4.2 Custom CNN retrained for 45 epochs (Phase 4)
+- **What came up:** after 25 epochs (29.6 min) the custom CNN's best validation epoch was the last one, at 66.1%. It was still improving, so the epoch cap cut it off (`results/cnn_custom_history_25ep.csv`).
+- **Chosen:** retrain from scratch with up to 45 epochs and early-stopping patience 8, which is about 52 min at the measured 70 s per epoch. That's inside the 60-minute budget. The cosine learning-rate schedule spans the 45 epochs. MobileNetV3-small was left as is, because its best epoch (23 of 25) came before the cap.
+- **To change:** `python src/train_cnn.py --model custom --epochs N`.
+
+## Q4.3 MobileNet's very high validation accuracy (Phase 4), to keep in mind
+- MobileNetV3-small reaches 97.5% on validation. Our split keeps capture sessions apart, but the same 14 signers (and probably their rooms) appear in all splits. Some of the accuracy may come from recognising people and backgrounds. The colour-only 1-NN still scores 17% versus 2% chance, so that signal exists.
+- **How we check it:** the Phase 6 robustness tests (lighting, occlusion and so on) and your own webcam photos (`data/own/`, PENDING) test exactly this. I haven't changed anything because of it.

@@ -34,14 +34,18 @@ BATCH = 64
 
 
 class SmallCNN(nn.Module):
-    """4 blocks of (conv3x3-BN-ReLU) x2 + maxpool: 128 -> 64 -> 32 -> 16 -> 8, then global average pool."""
+    """4 blocks of conv3x3-BN-ReLU + maxpool: 128 -> 64 -> 32 -> 16 -> 8, then global average pool.
+
+    One conv per block (not two): the two-conv version took ~2.9 min/epoch on our
+    CPU (~73 min for 25 epochs, results/cnn_time_estimates_two_conv_custom.json,
+    docs/QUESTIONS.md Q4.1), over the 60-minute budget.
+    """
 
     def __init__(self, n_classes=N_CLASSES, widths=(32, 64, 128, 256), p=0.3):
         super().__init__()
         layers, c_in = [], 3
         for w in widths:
             layers += [nn.Conv2d(c_in, w, 3, padding=1, bias=False), nn.BatchNorm2d(w), nn.ReLU(inplace=True),
-                       nn.Conv2d(w, w, 3, padding=1, bias=False), nn.BatchNorm2d(w), nn.ReLU(inplace=True),
                        nn.MaxPool2d(2)]
             c_in = w
         self.features = nn.Sequential(*layers)

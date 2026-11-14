@@ -65,3 +65,29 @@ The selected MLP has 73,777 parameters and trains in about 20 seconds on a CPU. 
 1. *Why AdamW and early stopping?* AdamW adapts the step size per weight and applies weight decay correctly. Early stopping keeps the weights from the epoch with the lowest validation loss, before overfitting starts.
 2. *Why is the MLP better than logistic regression?* Logistic regression can only draw straight boundaries between classes. The MLP's hidden layers with ReLU can learn curved boundaries, which helps with combinations like "this finger bent AND that one straight".
 3. *Why report two accuracies?* The MLP can only classify images where MediaPipe found a hand. "End-to-end" accuracy counts the roughly 11% detection failures as errors, which is what a user would actually experience.
+
+## Phase 4: CNN baselines, approach A (2026-11-14)
+
+**What we did:** trained two CNNs on 128×128 images with the same splits and seed (`src/train_cnn.py`, `src/cnn_data.py`), validation set only (`results/cnn_val.json`):
+
+| Model | Parameters | Val acc | Macro F1 | Training time (CPU) |
+|---|---|---|---|---|
+| Custom CNN (4 conv blocks, from scratch) | 401,489 | 73.8% | 0.731 | 54.0 min (45 epochs) |
+| MobileNetV3-small (ImageNet-pretrained, fine-tuned) | 1,568,081 | **97.5%** | 0.975 | 11.2 min (25 epochs) |
+
+Two compromises (QUESTIONS.md Q4.1 and Q4.2):
+- The planned two-convs-per-block design would have taken about 73 min, so we used one conv per block.
+- The custom CNN was still improving after 25 epochs (66.1%), so we retrained it for 45 epochs.
+
+**Why:** the CNNs are the "classic" computer-vision approach. They see every pixel, including the background, which is both their strength and their risk.
+
+**Key concept: transfer learning.** MobileNet already learned edges, textures and shapes from 1.2 million ImageNet photos, so on our 10k images it only has to adapt those features to hand signs. It hit 96% validation accuracy within 3 epochs (`results/cnn_curves.png`). The custom CNN starts from random weights and has to learn everything from our small dataset, so it's slower and weaker. Augmentation:
+- **Random crops:** the hand isn't always centred.
+- **Small rotations:** the camera may be tilted.
+- **Colour jitter:** lighting and skin tone vary.
+- **No horizontal flips:** a flipped image swaps the hands and can turn one sign into another.
+
+**Likely faculty questions**
+1. *Why is MobileNet so much better than your own CNN?* Pretraining: it starts with general visual features from ImageNet, while our CNN learns from 10k images alone. Same task, very different starting points.
+2. *Is 97.5% too good to be true?* Possibly partly. The split keeps capture sessions apart, but the same 14 signers appear in every split, and a CNN can use background and skin cues. The robustness tests and webcam photos of a new person (Phase 6) check this.
+3. *Why label smoothing and a cosine learning rate?* Label smoothing (0.05) stops the network from becoming over-confident. The cosine schedule lowers the learning rate smoothly so training settles into a good minimum.
