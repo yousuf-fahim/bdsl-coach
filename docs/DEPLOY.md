@@ -69,7 +69,7 @@ After the repo is on GitHub (see B1):
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
 3. Environment variables (Production and Preview):
-   - `NODE_VERSION` = `22`
+   - `NODE_VERSION` = `24` (it ships npm 11, which matches `package-lock.json`. Node 22's npm 10 rejects the lock file)
    - `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD` = `1` (skips a browser download the build doesn't need)
 4. Choose **Save and Deploy**. The model files are committed in `web/public/models/`, so the build doesn't need Python.
 
