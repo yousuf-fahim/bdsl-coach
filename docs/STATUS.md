@@ -1,8 +1,9 @@
 # STATUS
 
-> ## ✅ FINISHED: all phases 0–9 are done and committed. Last updated: 2026-11-14 21:34
-> Branch `feat/bdsl-pipeline` (13 commits on top of `main`, one or more per phase). Nothing is pushed: there's no GitHub remote yet.
-> **5 items are waiting on you (below).** Nothing is blocked.
+> ## ✅ FINISHED AND DEPLOYED. Last updated: 2026-11-15 01:47
+> **Live demo: https://yousuf-fahim.github.io/bdsl-coach/** (headless Edge check: models load, 0 failed requests)
+> Repo: https://github.com/yousuf-fahim/bdsl-coach. PRs #1–#4 were merged at your request.
+> **3 items are still waiting on you (1, 2 and 5 below).** Items 3 and 4 are done.
 
 ## Final summary
 
@@ -50,12 +51,12 @@ cd C:\Users\FAHIM\OneDrive\Documents\PROJECTS\bdsl-coach
 ```
 Then ask me to "fill in the own-photo results". That means report Section 6.3, the README line, the viva sheet and a re-rendered PDF (`cd web; npm run report:pdf`).
 
-**3. Deploy (no Vercel).** Follow `docs/DEPLOY.md`:
+**3. Deploy: ✅ DONE.** The site is on GitHub Pages and redeploys automatically on every push to `main` that touches `web/`. The first two builds failed: Windows npm left two packages out of the lock file, fixed in PR #3. For reference, the original instructions are kept below.
 - **Quickest:** `cd web; npm run build`, then on dash.cloudflare.com go to **Workers & Pages → Create → Pages → Upload assets** and upload `web\dist`.
 - **Or GitHub Pages:** create the repo, push, set **Settings → Pages → Source = GitHub Actions**, then merge. The workflow is already in `.github/workflows/deploy-pages.yml`. **No base-path setting is needed**, because the build uses relative `./` paths and was tested under `/bdsl-coach/`.
 - Then put the URL in `README.md` (the line marked TODO) and in the report header.
 
-**4. GitHub repo, PR and merge.** There's no remote yet, so I didn't push or open a PR.
+**4. GitHub repo, PR and merge: ✅ DONE.** The public repo is on `yousuf-fahim`, and the PRs were merged at your request. For reference, the commands used were:
 ```powershell
 gh repo create bdsl-coach --public --source . --remote origin
 git push -u origin main feat/bdsl-pipeline
