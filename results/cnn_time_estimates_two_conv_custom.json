@@ -1,0 +1,16 @@
+{
+  "custom": {
+    "model": "custom",
+    "sec_per_step": 1.052,
+    "min_per_epoch": 2.92,
+    "min_for_max_epochs": 73.0,
+    "max_epochs": 25
+  },
+  "mobilenet": {
+    "model": "mobilenet",
+    "sec_per_step": 0.186,
+    "min_per_epoch": 0.51,
+    "min_for_max_epochs": 12.7,
+    "max_epochs": 25
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "median_distance_all_pairs": 5.48185920715332,
+  "min_distance_all_pairs": 0.42652764916419983,
+  "pairs": [
+    {
+      "pair": "৭-৮",
+      "approach_listing": "A",
+      "mean_landmark_distance": 2.1023764610290527,
+      "percentile_among_all_49x48_2_pairs": 4.761904761904762
+    },
+    {
+      "pair": "র-ল",
+      "approach_listing": "A",
+      "mean_landmark_distance": 1.0412184000015259,
+      "percentile_among_all_49x48_2_pairs": 0.4251700680272109
+    },
+    {
+      "pair": "ম-ন",
+      "approach_listing": "A",
+      "mean_landmark_distance": 3.812330722808838,
+      "percentile_among_all_49x48_2_pairs": 20.66326530612245
+    },
+    {
+      "pair": "র-ন",
+      "approach_listing": "A",
+      "mean_landmark_distance": 0.9527012705802917,
+      "percentile_among_all_49x48_2_pairs": 0.17006802721088435
+    },
+    {
+      "pair": "উ-এ",
+      "approach_listing": "A",
+      "mean_landmark_distance": 0.42652764916419983,
+      "percentile_among_all_49x48_2_pairs": 0.0
+    },
+    {
+      "pair": "১-২",
+      "approach_listing": "A",
+      "mean_landmark_distance": 2.080106735229492,
+      "percentile_among_all_49x48_2_pairs": 4.67687074829932
+    },
+    {
+      "pair": "ং-০",
+      "approach_listing": "A",
+      "mean_landmark_distance": 4.604042053222656,
+      "percentile_among_all_49x48_2_pairs": 32.99319727891156
+    },
+    {
+      "pair": "য়-◌্",
+      "approach_listing": "A",
+      "mean_landmark_distance": 2.901942729949951,
+      "percentile_among_all_49x48_2_pairs": 10.799319727891156
+    },
+    {
+      "pair": "ব-ড়",
+      "approach_listing": "A",
+      "mean_landmark_distance": 4.676723003387451,
+      "percentile_among_all_49x48_2_pairs": 33.843537414965986
+    },
+    {
+      "pair": "ত-ং",
+      "approach_listing": "A",
+      "mean_landmark_distance": 2.1393349170684814,
+      "percentile_among_all_49x48_2_pairs": 5.017006802721088
+    },
+    {
+      "pair": "ল-ন",
+      "approach_listing": "B",
+      "mean_landmark_distance": 1.1833384037017822,
+      "percentile_among_all_49x48_2_pairs": 0.5952380952380952
+    },
+    {
+      "pair": "ঝ-ফ",
+      "approach_listing": "B",
+      "mean_landmark_distance": 1.2902333736419678,
+      "percentile_among_all_49x48_2_pairs": 0.8503401360544218
+    },
+    {
+      "pair": "উ-ও",
+      "approach_listing": "B",
+      "mean_landmark_distance": 1.2948323488235474,
+      "percentile_among_all_49x48_2_pairs": 0.935374149659864
+    },
+    {
+      "pair": "ট-৭",
+      "approach_listing": "B",
+      "mean_landmark_distance": 3.505861759185791,
+      "percentile_among_all_49x48_2_pairs": 16.666666666666664
+    },
+    {
+      "pair": "অ-ই",
+      "approach_listing": "B",
+      "mean_landmark_distance": 1.690941572189331,
+      "percentile_among_all_49x48_2_pairs": 2.976190476190476
+    },
+    {
+      "pair": "ভ-ঃ",
+      "approach_listing": "B",
+      "mean_landmark_distance": 1.7151001691818237,
+      "percentile_among_all_49x48_2_pairs": 3.231292517006803
+    }
+  ]
+}

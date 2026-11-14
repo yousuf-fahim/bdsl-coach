@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parity test</title>
+  </head>
+  <body>
+    <p id="out">running…</p>
+    <script type="module">
+      // Runs in a real browser via tests/parity.mjs (Playwright). Not part of the built site.
+      import { createPipeline } from "../src/pipeline.js";
+      import { normalizeHands } from "../src/normalize.js";
+
+      async function loadImage(src) {
+        const img = new Image();
+        img.src = src;
+        await img.decode();
+        return img;
+      }
+
+      try {
+        const { samples } = await (await fetch("./fixtures/parity_samples.json")).json();
+        const pipe = await createPipeline({ mode: "IMAGE", base: "../" });
+        const rows = [];
+        for (const s of samples) {
+          // 1) same raw landmarks -> JS normalisation -> ONNX (browser) vs Python features/logits
+          const feat = normalizeHands(s.hands, s.width, s.height);
+          const logits = await pipe.logits(feat);
+          const featDiff = Math.max(...Array.from(feat, (v, i) => Math.abs(v - s.py_features[i])));
+          const logitDiff = Math.max(...logits.map((v, i) => Math.abs(v - s.py_logits[i])));
+          const argmax = (a) => a.indexOf(Math.max(...a));
+          // 2) end-to-end: MediaPipe JS on the same padded image Python used
+          let e2e = null;
+          try {
+            const img = await loadImage(`./fixtures/images/${s.image}`);
+            const r = await pipe.run(img, img.naturalWidth, img.naturalHeight, 0);
+            e2e = {
+              js_hands: r.hands.length,
+              py_hands: s.hands.length,
+              js_pred: r.probs ? argmax(r.probs) : null,
+              max_feature_diff: Math.max(...Array.from(r.features, (v, i) => Math.abs(v - s.py_features[i]))),
+            };
+          } catch (e) {
+            e2e = { error: String(e) };
+          }
+          rows.push({
+            id: s.id,
+            label: s.label,
+            feature_max_diff: featDiff,
+            logit_max_diff: logitDiff,
+            py_pred: s.hands.length ? argmax(s.py_logits) : null,
+            js_pred: s.hands.length ? argmax(logits) : null,
+            e2e,
+          });
+        }
+        window.__parity = { ok: true, rows };
+        document.getElementById("out").textContent = "done";
+      } catch (e) {
+        window.__parity = { ok: false, error: String(e), stack: e.stack };
+        document.getElementById("out").textContent = "error: " + e;
+      }
+    </script>
+  </body>
+</html>

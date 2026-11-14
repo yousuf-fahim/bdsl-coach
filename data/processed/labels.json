@@ -1,0 +1,447 @@
+{
+  "source": "Hasib et al. 2023, Data in Brief 49:109329, Table 1",
+  "status": "PROVISIONAL - verify against results/sample_grid.png",
+  "classes": [
+    {
+      "index": 0,
+      "folder": "0",
+      "paper_label": 1,
+      "bangla": "অ",
+      "roman": "o",
+      "type": "vowel",
+      "display": "অ"
+    },
+    {
+      "index": 1,
+      "folder": "1",
+      "paper_label": 2,
+      "bangla": "আ",
+      "roman": "a",
+      "type": "vowel",
+      "display": "আ"
+    },
+    {
+      "index": 2,
+      "folder": "2",
+      "paper_label": 3,
+      "bangla": "ই",
+      "roman": "i",
+      "type": "vowel",
+      "display": "ই"
+    },
+    {
+      "index": 3,
+      "folder": "3",
+      "paper_label": 4,
+      "bangla": "উ",
+      "roman": "u",
+      "type": "vowel",
+      "display": "উ"
+    },
+    {
+      "index": 4,
+      "folder": "4",
+      "paper_label": 5,
+      "bangla": "এ",
+      "roman": "e",
+      "type": "vowel",
+      "display": "এ"
+    },
+    {
+      "index": 5,
+      "folder": "5",
+      "paper_label": 6,
+      "bangla": "ও",
+      "roman": "o (long)",
+      "type": "vowel",
+      "display": "ও"
+    },
+    {
+      "index": 6,
+      "folder": "6",
+      "paper_label": 7,
+      "bangla": "ক",
+      "roman": "ka",
+      "type": "consonant",
+      "display": "ক"
+    },
+    {
+      "index": 7,
+      "folder": "7",
+      "paper_label": 8,
+      "bangla": "খ",
+      "roman": "kha",
+      "type": "consonant",
+      "display": "খ"
+    },
+    {
+      "index": 8,
+      "folder": "8",
+      "paper_label": 9,
+      "bangla": "গ",
+      "roman": "ga",
+      "type": "consonant",
+      "display": "গ"
+    },
+    {
+      "index": 9,
+      "folder": "9",
+      "paper_label": 10,
+      "bangla": "ঘ",
+      "roman": "gha",
+      "type": "consonant",
+      "display": "ঘ"
+    },
+    {
+      "index": 10,
+      "folder": "10",
+      "paper_label": 11,
+      "bangla": "চ",
+      "roman": "ca",
+      "type": "consonant",
+      "display": "চ"
+    },
+    {
+      "index": 11,
+      "folder": "11",
+      "paper_label": 12,
+      "bangla": "ছ",
+      "roman": "cha",
+      "type": "consonant",
+      "display": "ছ"
+    },
+    {
+      "index": 12,
+      "folder": "12",
+      "paper_label": 13,
+      "bangla": "জ",
+      "roman": "ja",
+      "type": "consonant",
+      "display": "জ"
+    },
+    {
+      "index": 13,
+      "folder": "13",
+      "paper_label": 14,
+      "bangla": "ঝ",
+      "roman": "jha",
+      "type": "consonant",
+      "display": "ঝ"
+    },
+    {
+      "index": 14,
+      "folder": "14",
+      "paper_label": 15,
+      "bangla": "ট",
+      "roman": "Ta",
+      "type": "consonant",
+      "display": "ট"
+    },
+    {
+      "index": 15,
+      "folder": "15",
+      "paper_label": 16,
+      "bangla": "ঠ",
+      "roman": "Tha",
+      "type": "consonant",
+      "display": "ঠ"
+    },
+    {
+      "index": 16,
+      "folder": "16",
+      "paper_label": 17,
+      "bangla": "ড",
+      "roman": "Da",
+      "type": "consonant",
+      "display": "ড"
+    },
+    {
+      "index": 17,
+      "folder": "17",
+      "paper_label": 18,
+      "bangla": "ঢ",
+      "roman": "Dha",
+      "type": "consonant",
+      "display": "ঢ"
+    },
+    {
+      "index": 18,
+      "folder": "18",
+      "paper_label": 19,
+      "bangla": "ত",
+      "roman": "ta",
+      "type": "consonant",
+      "display": "ত"
+    },
+    {
+      "index": 19,
+      "folder": "19",
+      "paper_label": 20,
+      "bangla": "থ",
+      "roman": "tha",
+      "type": "consonant",
+      "display": "থ"
+    },
+    {
+      "index": 20,
+      "folder": "20",
+      "paper_label": 21,
+      "bangla": "দ",
+      "roman": "da",
+      "type": "consonant",
+      "display": "দ"
+    },
+    {
+      "index": 21,
+      "folder": "21",
+      "paper_label": 22,
+      "bangla": "ধ",
+      "roman": "dha",
+      "type": "consonant",
+      "display": "ধ"
+    },
+    {
+      "index": 22,
+      "folder": "22",
+      "paper_label": 23,
+      "bangla": "প",
+      "roman": "pa",
+      "type": "consonant",
+      "display": "প"
+    },
+    {
+      "index": 23,
+      "folder": "23",
+      "paper_label": 24,
+      "bangla": "ফ",
+      "roman": "pha",
+      "type": "consonant",
+      "display": "ফ"
+    },
+    {
+      "index": 24,
+      "folder": "24",
+      "paper_label": 25,
+      "bangla": "ব",
+      "roman": "ba",
+      "type": "consonant",
+      "display": "ব"
+    },
+    {
+      "index": 25,
+      "folder": "25",
+      "paper_label": 26,
+      "bangla": "ভ",
+      "roman": "bha",
+      "type": "consonant",
+      "display": "ভ"
+    },
+    {
+      "index": 26,
+      "folder": "26",
+      "paper_label": 27,
+      "bangla": "ম",
+      "roman": "ma",
+      "type": "consonant",
+      "display": "ম"
+    },
+    {
+      "index": 27,
+      "folder": "27",
+      "paper_label": 28,
+      "bangla": "য়",
+      "roman": "ya (antastha)",
+      "type": "consonant",
+      "display": "য়"
+    },
+    {
+      "index": 28,
+      "folder": "28",
+      "paper_label": 29,
+      "bangla": "র",
+      "roman": "ra",
+      "type": "consonant",
+      "display": "র"
+    },
+    {
+      "index": 29,
+      "folder": "29",
+      "paper_label": 30,
+      "bangla": "ল",
+      "roman": "la",
+      "type": "consonant",
+      "display": "ল"
+    },
+    {
+      "index": 30,
+      "folder": "30",
+      "paper_label": 31,
+      "bangla": "ন",
+      "roman": "na",
+      "type": "consonant",
+      "display": "ন"
+    },
+    {
+      "index": 31,
+      "folder": "31",
+      "paper_label": 32,
+      "bangla": "স",
+      "roman": "sa",
+      "type": "consonant",
+      "display": "স"
+    },
+    {
+      "index": 32,
+      "folder": "32",
+      "paper_label": 33,
+      "bangla": "হ",
+      "roman": "ha",
+      "type": "consonant",
+      "display": "হ"
+    },
+    {
+      "index": 33,
+      "folder": "33",
+      "paper_label": 34,
+      "bangla": "ড়",
+      "roman": "Ra",
+      "type": "consonant",
+      "display": "ড়"
+    },
+    {
+      "index": 34,
+      "folder": "34",
+      "paper_label": 35,
+      "bangla": "ং",
+      "roman": "anusvara",
+      "type": "special",
+      "display": "ং"
+    },
+    {
+      "index": 35,
+      "folder": "35",
+      "paper_label": 36,
+      "bangla": "ঃ",
+      "roman": "visarga",
+      "type": "special",
+      "display": "ঃ"
+    },
+    {
+      "index": 36,
+      "folder": "36",
+      "paper_label": 37,
+      "bangla": "০",
+      "roman": "0",
+      "type": "digit",
+      "display": "০"
+    },
+    {
+      "index": 37,
+      "folder": "37",
+      "paper_label": 38,
+      "bangla": "১",
+      "roman": "1",
+      "type": "digit",
+      "display": "১"
+    },
+    {
+      "index": 38,
+      "folder": "38",
+      "paper_label": 39,
+      "bangla": "২",
+      "roman": "2",
+      "type": "digit",
+      "display": "২"
+    },
+    {
+      "index": 39,
+      "folder": "39",
+      "paper_label": 40,
+      "bangla": "৩",
+      "roman": "3",
+      "type": "digit",
+      "display": "৩"
+    },
+    {
+      "index": 40,
+      "folder": "40",
+      "paper_label": 41,
+      "bangla": "৪",
+      "roman": "4",
+      "type": "digit",
+      "display": "৪"
+    },
+    {
+      "index": 41,
+      "folder": "41",
+      "paper_label": 42,
+      "bangla": "৫",
+      "roman": "5",
+      "type": "digit",
+      "display": "৫"
+    },
+    {
+      "index": 42,
+      "folder": "42",
+      "paper_label": 43,
+      "bangla": "৬",
+      "roman": "6",
+      "type": "digit",
+      "display": "৬"
+    },
+    {
+      "index": 43,
+      "folder": "43",
+      "paper_label": 44,
+      "bangla": "৭",
+      "roman": "7",
+      "type": "digit",
+      "display": "৭"
+    },
+    {
+      "index": 44,
+      "folder": "44",
+      "paper_label": 45,
+      "bangla": "৮",
+      "roman": "8",
+      "type": "digit",
+      "display": "৮"
+    },
+    {
+      "index": 45,
+      "folder": "45",
+      "paper_label": 46,
+      "bangla": "৯",
+      "roman": "9",
+      "type": "digit",
+      "display": "৯"
+    },
+    {
+      "index": 46,
+      "folder": "46",
+      "paper_label": 47,
+      "bangla": "্",
+      "roman": "hasanta",
+      "type": "special",
+      "display": "◌্"
+    },
+    {
+      "index": 47,
+      "folder": "47",
+      "paper_label": 48,
+      "bangla": "space",
+      "roman": "space",
+      "type": "special",
+      "display": "␣"
+    },
+    {
+      "index": 48,
+      "folder": "48",
+      "paper_label": 49,
+      "bangla": "ঞ",
+      "roman": "nya",
+      "type": "consonant",
+      "display": "ঞ"
+    }
+  ]
+}

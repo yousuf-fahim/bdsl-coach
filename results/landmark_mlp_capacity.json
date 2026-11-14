@@ -1,0 +1,34 @@
+[
+  {
+    "h1": 256,
+    "h2": 128,
+    "dropout": 0.3,
+    "val_acc": 0.7902061939239502,
+    "train_acc_eval_mode": 0.8617813855220727,
+    "parameters": 73777
+  },
+  {
+    "h1": 256,
+    "h2": 128,
+    "dropout": 0.1,
+    "val_acc": 0.7881443500518799,
+    "train_acc_eval_mode": 0.8703436005782275,
+    "parameters": 73777
+  },
+  {
+    "h1": 512,
+    "h2": 256,
+    "dropout": 0.2,
+    "val_acc": 0.7757731676101685,
+    "train_acc_eval_mode": 0.8681196486155899,
+    "parameters": 213041
+  },
+  {
+    "h1": 512,
+    "h2": 256,
+    "dropout": 0.1,
+    "val_acc": 0.7695876359939575,
+    "train_acc_eval_mode": 0.8595574335594351,
+    "parameters": 213041
+  }
+]

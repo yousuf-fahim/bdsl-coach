@@ -1,0 +1,26 @@
+{
+  "custom": {
+    "val_acc": 0.7381717960496096,
+    "val_macro_f1": 0.7306682572526094,
+    "best_epoch": 42,
+    "epochs_run": 45,
+    "max_epochs": 45,
+    "parameters": 401489,
+    "train_minutes": 54.0,
+    "image_size": 128,
+    "batch": 64,
+    "lr": 0.001
+  },
+  "mobilenet": {
+    "val_acc": 0.9751952227836472,
+    "val_macro_f1": 0.9747941981939203,
+    "best_epoch": 23,
+    "epochs_run": 25,
+    "max_epochs": 25,
+    "parameters": 1568081,
+    "train_minutes": 11.2,
+    "image_size": 128,
+    "batch": 64,
+    "lr": 0.0005
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Practise Bangla Sign Language (BdSL) letters with your webcam. Runs entirely in your browser." />
+    <title>BdSL Learning Coach</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%8B%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header>
+      <h1>BdSL Learning Coach</h1>
+      <nav role="tablist">
+        <button id="tab-recognise" role="tab" aria-selected="true">Recognise</button>
+        <button id="tab-practice" role="tab" aria-selected="false">Practice</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="stage">
+        <div class="video-wrap" id="video-wrap">
+          <video id="video" playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="camera-cta" class="cta">
+            <p>Your camera feed is processed on this device only. Nothing is uploaded.</p>
+            <button id="start" disabled>Loading models…</button>
+          </div>
+        </div>
+        <p id="status" class="status" aria-live="polite">Loading…</p>
+      </section>
+
+      <section class="panel" id="panel-recognise">
+        <h2>Top predictions</h2>
+        <ol id="top3" class="top3"></ol>
+        <p class="hint">Hold a sign steady in front of the camera. Predictions are averaged over the last 5 frames.</p>
+      </section>
+
+      <section class="panel hidden" id="panel-practice">
+        <h2>Show this sign</h2>
+        <div id="target" class="target bn">অ</div>
+        <p id="target-roman" class="roman"></p>
+        <div class="hold"><div id="hold-bar"></div></div>
+        <p id="practice-msg" class="hint">Hold the sign above 70% confidence for half a second.</p>
+        <div class="row">
+          <select id="target-select" aria-label="Choose a sign"></select>
+          <button id="next">Next sign</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        A learning aid, not a replacement for human interpreters. Model: MediaPipe hand landmarks + a small MLP trained on
+        BDSL 49 (Hasib et al., 2023). <span id="label-note"></span>
+      </p>
+    </footer>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "pad_frac": 0.0,
+    "confidence": 0.5,
+    "images": 392,
+    "detected_any": 0.75,
+    "two_hands": 0.1760204081632653
+  },
+  {
+    "pad_frac": 0.0,
+    "confidence": 0.3,
+    "images": 392,
+    "detected_any": 0.8137755102040817,
+    "two_hands": 0.25
+  },
+  {
+    "pad_frac": 0.25,
+    "confidence": 0.5,
+    "images": 392,
+    "detected_any": 0.8316326530612245,
+    "two_hands": 0.23214285714285715
+  },
+  {
+    "pad_frac": 0.25,
+    "confidence": 0.3,
+    "images": 392,
+    "detected_any": 0.9056122448979592,
+    "two_hands": 0.30357142857142855
+  },
+  {
+    "pad_frac": 0.5,
+    "confidence": 0.5,
+    "images": 392,
+    "detected_any": 0.8647959183673469,
+    "two_hands": 0.25
+  },
+  {
+    "pad_frac": 0.5,
+    "confidence": 0.3,
+    "images": 392,
+    "detected_any": 0.9183673469387755,
+    "two_hands": 0.2729591836734694
+  }
+]

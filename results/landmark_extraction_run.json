@@ -1,0 +1,8 @@
+{
+  "images": 14486,
+  "seconds": 89.2,
+  "max_side": 640,
+  "pad_frac": 0.25,
+  "min_detection_confidence": 0.3,
+  "min_presence_confidence": 0.3
+}

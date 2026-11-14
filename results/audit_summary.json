@@ -1,0 +1,62 @@
+{
+  "n_images": 14714,
+  "n_classes": 49,
+  "orig_split_counts": {
+    "train": 11774,
+    "test": 2940
+  },
+  "extensions": {
+    "jpg": 14714
+  },
+  "modes": {
+    "RGB": 14714
+  },
+  "n_corrupt": 0,
+  "corrupt_files": [],
+  "prefix_folder_mismatches": [],
+  "duplicate_class_index_pairs": 0,
+  "width": {
+    "count": 14714.0,
+    "mean": 1019.3,
+    "std": 692.7,
+    "min": 42.0,
+    "25%": 504.0,
+    "50%": 906.0,
+    "75%": 1341.0,
+    "max": 4839.0
+  },
+  "height": {
+    "count": 14714.0,
+    "mean": 1089.7,
+    "std": 707.0,
+    "min": 44.0,
+    "25%": 537.0,
+    "50%": 994.0,
+    "75%": 1416.0,
+    "max": 5570.0
+  },
+  "n_distinct_sizes": 14639,
+  "most_common_sizes": {
+    "75x81": 2,
+    "109x144": 2,
+    "133x137": 2,
+    "159x144": 2,
+    "166x252": 2
+  },
+  "images_per_class": {
+    "min": 296,
+    "max": 319,
+    "mean": 300.3,
+    "imbalance_ratio_max_over_min": 1.078
+  },
+  "smallest_classes": {
+    "ই": 296,
+    "ফ": 298,
+    "৫": 298
+  },
+  "largest_classes": {
+    "আ": 319,
+    "প": 302,
+    "৯": 302
+  }
+}

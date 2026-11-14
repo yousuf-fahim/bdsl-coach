@@ -1,0 +1,23 @@
+{
+  "python": "3.13.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "logical_cpus": 12,
+  "torch_threads": 6,
+  "cuda_available": false,
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2",
+    "cv2": "5.0.0",
+    "mediapipe": "1.2.3",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "onnx": "1.23.2",
+    "onnxruntime": "1.32.0",
+    "imagehash": "4.3.2",
+    "PIL": "13.0.0"
+  }
+}
