@@ -91,3 +91,21 @@ Two compromises (QUESTIONS.md Q4.1 and Q4.2):
 1. *Why is MobileNet so much better than your own CNN?* Pretraining: it starts with general visual features from ImageNet, while our CNN learns from 10k images alone. Same task, very different starting points.
 2. *Is 97.5% too good to be true?* Possibly partly. The split keeps capture sessions apart, but the same 14 signers appear in every split, and a CNN can use background and skin cues. The robustness tests and webcam photos of a new person (Phase 6) check this.
 3. *Why label smoothing and a cosine learning rate?* Label smoothing (0.05) stops the network from becoming over-confident. The cosine schedule lowers the learning rate smoothly so training settles into a good minimum.
+
+## Phase 5: Head-to-head comparison on the test set (2026-11-14)
+
+**What we did:** evaluated all three models on the 2,200 test images, **once** (`src/evaluate.py`, `results/comparison.csv`). We added 95% bootstrap confidence intervals from the saved predictions (`src/bootstrap_ci.py`, `results/comparison_ci.csv`). Headline results:
+- **Accuracy:** MobileNetV3-small 97.2%, custom CNN 73.2%, landmark MLP 75.7% on images with a detected hand (68.6% counting the 9.3% detection failures as errors).
+- **Classifier size:** MLP 297 KB, custom CNN 1.6 MB, MobileNet 6.2 MB. Approach B also needs the 7.6 MB MediaPipe model.
+- **Latency:** MLP 0.05 ms alone, 15.4 ms end-to-end with MediaPipe. MobileNet 2.6 ms, custom CNN 4.2 ms.
+
+Interpretation: `results/comparison_interpretation.md`.
+
+**Why:** a fair comparison needs the same test images, a test set touched only once (so we can't tune toward it), and every cost counted: accuracy, size and speed.
+
+**Key concept: confidence intervals and "is the difference real?"** One accuracy number on 2,200 images has sampling noise. The bootstrap resamples the test images thousands of times to see how much the score would wobble. MobileNet's +24-point lead over the custom CNN has an interval of 22–26 points, so it's clearly real. The MLP's +2.4-point edge over the custom CNN on detected images has an interval from −0.1 to +5.0, which crosses zero, so we call it a tie. Validation and test scores were close for all models (for example 97.5% vs 97.2%), so choosing models on the validation set didn't overfit it.
+
+**Likely faculty questions**
+1. *Why touch the test set only once?* Each look at test results tempts you to tweak the model toward them. Then the test score is no longer an unbiased estimate of performance on new data.
+2. *Your landmark approach lost. Is the project a failure?* No. It matches a from-scratch CNN with 1/20th the parameters when the hand is detected. Its weak point (detection) is measured and reported. A pretrained CNN winning on in-distribution accuracy is a valid, explainable result.
+3. *Is the latency comparison fair?* Partly. The CNNs were timed on images already cropped to the hand. In a webcam app they'd also need a hand detector, which approach B gets from MediaPipe. We report classifier-only and end-to-end times separately for that reason.
