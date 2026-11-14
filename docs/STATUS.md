@@ -1,7 +1,7 @@
 # STATUS
 
 > ## ✅ FINISHED: all phases 0–9 are done and committed. Last updated: 2026-11-14 21:34
-> Branch `feat/bdsl-pipeline` (10 commits on top of `main`). Nothing is pushed: there's no GitHub remote yet.
+> Branch `feat/bdsl-pipeline` (13 commits on top of `main`, one or more per phase). Nothing is pushed: there's no GitHub remote yet.
 > **5 items are waiting on you (below).** Nothing is blocked.
 
 ## Final summary
