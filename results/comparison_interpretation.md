@@ -8,7 +8,7 @@ All numbers come from `results/comparison.csv` (`src/evaluate.py`, a single run 
 - MediaPipe found a hand in 1,995 of 2,200 test images (90.7%).
 - On those images the MLP scores 75.7% and the custom CNN 73.3%. The difference (+2.4 points) has a CI from −0.1 to +5.0, so we can't call it a win.
 - Counting the 205 images without a detected hand as errors, the MLP drops to 68.6%, which is 4.6 points below the custom CNN (CI −7.0 to −2.0).
-- So with 1/20th the parameters (74k vs 401k), the landmark classifier matches a from-scratch CNN when it gets landmarks. Detection failures are what cost it.
+- So with about 1/5 of the parameters (74k vs 401k), the landmark classifier matches a from-scratch CNN when it gets landmarks. Detection failures are what cost it.
 
 **Size: depends on what you count.**
 - The MLP file is tiny: 297 KB, versus 1,580 KB (custom CNN) and 6,245 KB (MobileNet).

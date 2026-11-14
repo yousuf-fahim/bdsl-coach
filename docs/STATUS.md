@@ -1,42 +1,37 @@
 # STATUS
 
-> **Current phase: 4 (CNN baselines), training in the background.** Last updated: 2026-11-14 19:37 (CNN training started 19:35)
+> **Current phase: 6 (robustness), running in the background.** Last updated: 2026-11-14 21:15
 
 ## Done
-- **Phase 0:** environment, CPU only, git branch `feat/bdsl-pipeline`.
+- **Phase 0:** environment, CPU only, branch `feat/bdsl-pipeline`.
 - **Phase 1:**
   - 14,714 images, 49 classes.
   - Leakage-aware split, 68.7 / 14.8 / 15.0%.
   - Labels are **PROVISIONAL** (Q1.1).
-- **Phase 2:** MediaPipe found a hand in 89.2% of images. Worst classes: "space" 39%, গ 65%.
-- **Phase 3:** landmark MLP reaches **79.0%** validation accuracy on detected images (70.4% counting misses as errors). 73,777 parameters, trains in 20 seconds.
+- **Phase 2:** MediaPipe found a hand in 89.2% of images.
+- **Phase 3:** landmark MLP reaches 79.0% validation accuracy on detected images.
+- **Phase 4:** validation accuracy: MobileNetV3-small 97.5%, custom CNN 73.8% (45 epochs, Q4.2).
+- **Phase 5, test set (used once):** `results/comparison.csv`, with 95% CIs in `results/comparison_ci.csv`.
+  - **MobileNetV3-small: 97.2%**
+  - Custom CNN: 73.2%
+  - Landmark MLP: 75.7% on images with a detected hand, 68.6% end-to-end.
+  - The MLP classifier is 297 KB and takes 0.05 ms, but needs 7.6 MB of MediaPipe and 15.4 ms end-to-end.
 
-## In progress (20:35)
-- Phase 4:
-  - **MobileNetV3-small:** done. 97.5% validation accuracy, trained in 11.2 min.
-  - **Custom CNN, 25 epochs:** 66.1% validation accuracy, but still improving at the last epoch.
-  - **Custom CNN, 45 epochs:** retraining now (Q4.2), ETA about 21:20. Log: `logs/train_cnn_custom.log`.
-- `src/robustness.py`: fixed a worker-pool hang. It now uses a fresh pool per setting with a timeout and retry, and was verified on 60 validation images.
-
-## Prepared while training runs (uncommitted until their phase)
-- `src/evaluate.py` (Phase 5), `src/robustness.py`, `src/capture_own.py` and `src/eval_own.py` (Phase 6), and `src/error_analysis.py` (Phase 7).
-- **Phase 8 web demo** is built and tested locally:
-  - JS normalisation matches Python exactly.
-  - Browser ONNX logits are within 7.6×10⁻⁶ of PyTorch.
-  - MediaPipe JS agrees with Python on 16/16 predictions.
-  - The smoke test of `web/dist` passes, with zero external requests.
-  - `docs/DEPLOY.md` is written for Cloudflare Pages and GitHub Pages.
+## In progress
+- Phase 6: 7 perturbations × 5 severities on the test set (`logs/robustness.log`).
+- Own-webcam evaluation: **PENDING** your photos. The scripts are ready and self-tested.
 
 ## Next
-Phase 5: the one-time test-set comparison, after MobileNet finishes (about 20:20).
+Phase 7 (error analysis), then committing Phase 8 (demo already built and tested), then Phase 9 (report).
 
 ## Waiting on you (not blocking)
 - Verify the label mapping: `results/sample_grid.png` (Q1.1).
 - Check one suspicious pair (Q1.3).
+- Take your own photos: `.venv\Scripts\python src\capture_own.py`, then `.venv\Scripts\python src\eval_own.py`.
 
 ## Blockers
 None.
 
 ## Standing instructions
-- **Hosting:** static site only, no Vercel. Output to `web/dist` with a relative `./` base, and everything self-hosted. `docs/DEPLOY.md` covers Cloudflare Pages and GitHub Pages.
+- **Hosting:** static site only, no Vercel. Output to `web/dist` with a relative `./` base, and everything self-hosted.
 - **GPU fallback:** Kaggle, not Colab.

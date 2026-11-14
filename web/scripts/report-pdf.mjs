@@ -11,11 +11,12 @@ const src = resolve(process.argv[2] || "../docs/report.md");
 const out = src.replace(/\.md$/, ".pdf");
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   @page { size: A4; margin: 18mm 16mm; }
-  body { font: 10.5pt/1.45 "Segoe UI", "Nirmala UI", "Noto Sans Bengali", sans-serif; color: #111; }
+  body { font: 9.5pt/1.38 "Segoe UI", "Nirmala UI", "Noto Sans Bengali", sans-serif; color: #111; }
+  ul { margin: 3pt 0; } li { margin: 0; } p { margin: 4pt 0; }
   h1 { font-size: 18pt; margin: 0 0 6pt; } h2 { font-size: 13.5pt; margin: 16pt 0 6pt; border-bottom: 1px solid #ccc; }
   h3 { font-size: 11.5pt; margin: 12pt 0 4pt; } p, li { text-align: justify; }
   table { border-collapse: collapse; margin: 8pt 0; font-size: 9.5pt; } th, td { border: 1px solid #bbb; padding: 3pt 6pt; }
-  th { background: #f0f0f0; } img { max-width: 100%; max-height: 95mm; display: block; margin: 6pt auto; }
+  th { background: #f0f0f0; } img { max-width: 88%; max-height: 72mm; display: block; margin: 4pt auto; }
   code { font-size: 9pt; background: #f4f4f4; padding: 0 2pt; } pre { background: #f4f4f4; padding: 6pt; font-size: 8.5pt; white-space: pre-wrap; }
   blockquote { border-left: 3px solid #999; margin: 6pt 0; padding: 2pt 10pt; color: #333; }
   em.caption, p > em:only-child { display: block; text-align: center; font-size: 9pt; color: #444; }

@@ -221,8 +221,10 @@ def summarize(r):
                 row["mlp_acc_given_detected_sev3"] = s.accuracy[3] / s.detection_rate[3] if s.detection_rate[3] else np.nan
             rows.append(row)
     c = r[(r.perturbation == "clean") & (r.model == "Landmark MLP")].iloc[0]
+    rows.append({"perturbation": "clean", "model": "Landmark MLP", "clean": c.accuracy,
+                 "detection_sev3": c.detection_rate,  # clean detection rate (no severity)
+                 "mlp_acc_given_detected_sev3": c.accuracy / c.detection_rate})
     out = pd.DataFrame(rows)
-    out.attrs["mlp_clean_acc_given_detected"] = c.accuracy / c.detection_rate
     out.to_csv(RESULTS / "robustness_summary.csv", index=False)
     return out
 

@@ -107,7 +107,7 @@ Interpretation: `results/comparison_interpretation.md`.
 
 **Likely faculty questions**
 1. *Why touch the test set only once?* Each look at test results tempts you to tweak the model toward them. Then the test score is no longer an unbiased estimate of performance on new data.
-2. *Your landmark approach lost. Is the project a failure?* No. It matches a from-scratch CNN with 1/20th the parameters when the hand is detected. Its weak point (detection) is measured and reported. A pretrained CNN winning on in-distribution accuracy is a valid, explainable result.
+2. *Your landmark approach lost. Is the project a failure?* No. It matches a from-scratch CNN with about 1/5 of its parameters (74k vs 401k) when the hand is detected. Its weak point (detection) is measured and reported. A pretrained CNN winning on in-distribution accuracy is a valid, explainable result.
 3. *Is the latency comparison fair?* Partly. The CNNs were timed on images already cropped to the hand. In a webcam app they'd also need a hand detector, which approach B gets from MediaPipe. We report classifier-only and end-to-end times separately for that reason.
 
 ## Phase 6: Robustness (2026-11-14)
@@ -121,7 +121,7 @@ We also wrote `src/capture_own.py` and `src/eval_own.py` for webcam photos of a 
 
 **Why:** a model used in a real room will see dim light, blur and cheap cameras. Clean test accuracy doesn't show how gracefully a model fails.
 
-**Key concept: a pipeline is only as strong as its weakest stage.** We expected landmarks to be robust because they ignore background and colour. But approach B is two stages, a hand detector and then a classifier. When the hand *is* found, the MLP's accuracy holds up fairly well: 75.5% clean, 61–76% at severity 3 for blur, darker, rotation and JPEG. But noise and over-exposure make MediaPipe miss the hand entirely, and then the classifier never gets a chance. MobileNet, pretrained on millions of varied photos, has learned features that tolerate these changes. **The plan's hypothesis that B would be more robust was not supported on this data,** and that's a valid, reportable finding.
+**Key concept: a pipeline is only as strong as its weakest stage.** We expected landmarks to be robust because they ignore background and colour. But approach B is two stages, a hand detector and then a classifier. When the hand *is* found, the MLP's accuracy holds up fairly well: 75.6% clean, 61–76% at severity 3 for blur, darker, rotation and JPEG. But noise and over-exposure make MediaPipe miss the hand entirely, and then the classifier never gets a chance. MobileNet, pretrained on millions of varied photos, has learned features that tolerate these changes. **The plan's hypothesis that B would be more robust was not supported on this data,** and that's a valid, reportable finding.
 
 **Likely faculty questions**
 1. *Why did the "background-independent" approach turn out less robust?* Its features are background-independent, but its hand *detector* isn't perturbation-proof. Most of B's losses are detection failures (dotted line in `robustness_all.png`), not wrong classifications.
@@ -168,3 +168,22 @@ We also wrote `src/capture_own.py` and `src/eval_own.py` for webcam photos of a 
 1. *How do you know the browser gives the same answer as Python?* An automated headless-browser test feeds the same 20 inputs through both pipelines. Features are identical, logits differ by under 10⁻⁵, and predictions match.
 2. *Does the camera feed go to a server?* No. There's no server at all. MediaPipe and the MLP run in WebAssembly on the user's device, and the smoke test confirms the page makes no requests to other hosts.
 3. *Why ONNX?* It's a standard, framework-neutral model format. PyTorch exports it, and ONNX Runtime Web runs it in the browser without rewriting the network by hand.
+
+## Phase 9: Report and viva prep (2026-11-14)
+
+**What we did:**
+- wrote `docs/report.md` (8-page PDF: `docs/report.pdf`, rendered with headless Edge via `web/scripts/report-pdf.mjs`)
+- wrote `docs/viva-cheatsheet.md` (20 questions and a 5-slide outline)
+- replaced the README with the real one (results table, reproduce commands, citations)
+- checked every number in the report against `results/`. That check caught and fixed three of my own mistakes: a "1/20th the parameters" claim (actually 1/5 vs the custom CNN), a "most robust under every perturbation" claim (true for accuracy, not for the size of the drop under occlusion) and one rounding error.
+
+The own-webcam evaluation is marked **PENDING** throughout, not guessed.
+
+**Why:** a result is only useful if someone else can check it. Every figure and number in the report points to the file and script that produced it.
+
+**Key concept: honest reporting.** Our main hypothesis, that landmarks would be more robust, was not supported, and the report says so plainly. Limitations are listed with their measured size, for example 9.3% detection failures and 10.6% of test images near a training neighbour. A clear negative result with good measurements is worth more in a viva than an overstated positive one.
+
+**Likely faculty questions**
+1. *Can I reproduce your numbers?* Yes. The README lists every command in order. Seeds are fixed at 42, versions are pinned in `requirements-lock.txt` and `web/package-lock.json`, and re-running the MLP training reproduced its numbers exactly.
+2. *What is still missing?* The own-webcam test of a new person, and a native speaker's check of the label mapping. Both are marked pending.
+3. *What is the single most important lesson?* Measure before believing. The leakage demo (41.9% vs 17.4%) and the robustness sweep both overturned what we expected.

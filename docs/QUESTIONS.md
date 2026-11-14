@@ -85,7 +85,7 @@ Each entry: what came up, the options, what I chose, and how to change it.
 - **How we check it:** the Phase 6 robustness tests (lighting, occlusion and so on) and your own webcam photos (`data/own/`, PENDING) test exactly this. I haven't changed anything because of it.
 
 ## Q6.1 Which model should the demo use? Needs your decision later (Phase 6)
-- **What came up:** the plan ships the landmark MLP (approach B) in the browser. But on this dataset MobileNetV3-small is more accurate (97.2% vs 68.6% end-to-end on test) **and** more robust under every perturbation we tried (`results/robustness_summary.csv`). Approach B mostly fails because MediaPipe stops detecting the hand under noise, brightness changes and occlusion.
+- **What came up:** the plan ships the landmark MLP (approach B) in the browser. But on this dataset MobileNetV3-small is more accurate (97.2% vs 68.6% end-to-end on test) **and** keeps the highest accuracy at every severity of every perturbation we tried (`results/robustness_summary.csv`). Approach B mostly fails because MediaPipe stops detecting the hand under noise, brightness changes and occlusion.
 - **Options:**
   - (a) Keep the landmark MLP, as the phase prompts specify: tiny classifier, background-independent features, and it already ships the hand skeleton.
   - (b) Hybrid: use MediaPipe to find and crop the hand, then run MobileNet (exported to ONNX, about 6 MB) on the crop. MobileNet was trained on hand crops, so it needs a cropper on webcam frames anyway.
