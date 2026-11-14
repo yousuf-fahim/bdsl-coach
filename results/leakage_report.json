@@ -1,0 +1,266 @@
+{
+  "near_dup_pairs_total": 1424,
+  "near_dup_pairs_same_class": 1400,
+  "near_dup_pairs_cross_class": 24,
+  "exact_hash_duplicates": 5,
+  "same_class_pairs_index_gap_le_5": 656,
+  "same_class_pairs_index_gap_gt_25": 415,
+  "signer_ids_recoverable": false,
+  "signer_note": "File names are <paper_label>_<index>.jpg; no signer field. Grouping uses capture-order blocks.",
+  "gap_curve": [
+    {
+      "gap": 1,
+      "pairs": 14562,
+      "phash_mean": 25.829,
+      "colour_chi2_mean": 0.373
+    },
+    {
+      "gap": 2,
+      "pairs": 14510,
+      "phash_mean": 27.033,
+      "colour_chi2_mean": 0.406
+    },
+    {
+      "gap": 3,
+      "pairs": 14454,
+      "phash_mean": 27.714,
+      "colour_chi2_mean": 0.427
+    },
+    {
+      "gap": 5,
+      "pairs": 14350,
+      "phash_mean": 28.322,
+      "colour_chi2_mean": 0.456
+    },
+    {
+      "gap": 8,
+      "pairs": 14206,
+      "phash_mean": 28.914,
+      "colour_chi2_mean": 0.486
+    },
+    {
+      "gap": 12,
+      "pairs": 14014,
+      "phash_mean": 29.534,
+      "colour_chi2_mean": 0.515
+    },
+    {
+      "gap": 16,
+      "pairs": 13823,
+      "phash_mean": 29.996,
+      "colour_chi2_mean": 0.538
+    },
+    {
+      "gap": 20,
+      "pairs": 13626,
+      "phash_mean": 30.256,
+      "colour_chi2_mean": 0.549
+    },
+    {
+      "gap": 25,
+      "pairs": 13388,
+      "phash_mean": 30.442,
+      "colour_chi2_mean": 0.555
+    },
+    {
+      "gap": 30,
+      "pairs": 13153,
+      "phash_mean": 30.47,
+      "colour_chi2_mean": 0.558
+    },
+    {
+      "gap": 40,
+      "pairs": 12673,
+      "phash_mean": 30.498,
+      "colour_chi2_mean": 0.565
+    },
+    {
+      "gap": 60,
+      "pairs": 11728,
+      "phash_mean": 30.449,
+      "colour_chi2_mean": 0.575
+    },
+    {
+      "gap": 100,
+      "pairs": 9809,
+      "phash_mean": 30.54,
+      "colour_chi2_mean": 0.571
+    },
+    {
+      "gap": 150,
+      "pairs": 7365,
+      "phash_mean": 30.402,
+      "colour_chi2_mean": 0.573
+    }
+  ],
+  "cross_class_pairs": [
+    {
+      "a": "train/28/29_232.jpg",
+      "b": "train/30/31_279.jpg",
+      "dist": 2,
+      "label_a": "র",
+      "label_b": "ন"
+    },
+    {
+      "a": "train/3/4_140.jpg",
+      "b": "test/4/5_193.jpg",
+      "dist": 6,
+      "label_a": "উ",
+      "label_b": "এ"
+    },
+    {
+      "a": "train/28/29_294.jpg",
+      "b": "test/29/30_270.jpg",
+      "dist": 6,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/2/3_126.jpg",
+      "b": "test/28/29_287.jpg",
+      "dist": 8,
+      "label_a": "ই",
+      "label_b": "র"
+    },
+    {
+      "a": "train/3/4_139.jpg",
+      "b": "train/4/5_127.jpg",
+      "dist": 8,
+      "label_a": "উ",
+      "label_b": "এ"
+    },
+    {
+      "a": "train/3/4_162.jpg",
+      "b": "train/4/5_217.jpg",
+      "dist": 8,
+      "label_a": "উ",
+      "label_b": "এ"
+    },
+    {
+      "a": "train/3/4_117.jpg",
+      "b": "train/4/5_70.jpg",
+      "dist": 8,
+      "label_a": "উ",
+      "label_b": "এ"
+    },
+    {
+      "a": "train/2/3_270.jpg",
+      "b": "train/4/5_4.jpg",
+      "dist": 8,
+      "label_a": "ই",
+      "label_b": "এ"
+    },
+    {
+      "a": "train/18/19_145.jpg",
+      "b": "train/22/23_292.jpg",
+      "dist": 8,
+      "label_a": "ত",
+      "label_b": "প"
+    },
+    {
+      "a": "train/25/26_278.jpg",
+      "b": "train/33/34_174.jpg",
+      "dist": 8,
+      "label_a": "ভ",
+      "label_b": "ড়"
+    },
+    {
+      "a": "test/26/27_56.jpg",
+      "b": "train/29/30_193.jpg",
+      "dist": 8,
+      "label_a": "ম",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/26/27_154.jpg",
+      "b": "test/28/29_138.jpg",
+      "dist": 8,
+      "label_a": "ম",
+      "label_b": "র"
+    },
+    {
+      "a": "train/26/27_266.jpg",
+      "b": "test/28/29_266.jpg",
+      "dist": 8,
+      "label_a": "ম",
+      "label_b": "র"
+    },
+    {
+      "a": "train/28/29_94.jpg",
+      "b": "train/29/30_49.jpg",
+      "dist": 8,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/14/15_146.jpg",
+      "b": "train/17/18_270.jpg",
+      "dist": 8,
+      "label_a": "ট",
+      "label_b": "ঢ"
+    },
+    {
+      "a": "train/17/18_270.jpg",
+      "b": "test/18/19_33.jpg",
+      "dist": 8,
+      "label_a": "ঢ",
+      "label_b": "ত"
+    },
+    {
+      "a": "train/28/29_201.jpg",
+      "b": "train/29/30_183.jpg",
+      "dist": 8,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "test/28/29_193.jpg",
+      "b": "train/29/30_183.jpg",
+      "dist": 8,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/28/29_256.jpg",
+      "b": "train/29/30_271.jpg",
+      "dist": 8,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/28/29_294.jpg",
+      "b": "train/29/30_269.jpg",
+      "dist": 8,
+      "label_a": "র",
+      "label_b": "ল"
+    },
+    {
+      "a": "train/29/30_89.jpg",
+      "b": "train/30/31_86.jpg",
+      "dist": 8,
+      "label_a": "ল",
+      "label_b": "ন"
+    },
+    {
+      "a": "train/29/30_266.jpg",
+      "b": "train/30/31_220.jpg",
+      "dist": 8,
+      "label_a": "ল",
+      "label_b": "ন"
+    },
+    {
+      "a": "train/29/30_269.jpg",
+      "b": "train/30/31_241.jpg",
+      "dist": 8,
+      "label_a": "ল",
+      "label_b": "ন"
+    },
+    {
+      "a": "train/41/42_277.jpg",
+      "b": "test/44/45_7.jpg",
+      "dist": 8,
+      "label_a": "৫",
+      "label_b": "৮"
+    }
+  ]
+}

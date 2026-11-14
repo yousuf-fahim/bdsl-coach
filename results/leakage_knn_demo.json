@@ -1,0 +1,10 @@
+{
+  "description": "1-nearest-neighbour on colour histograms only (background/skin colour, no hand shape).",
+  "random_split_test_accuracy": 0.41893115942028986,
+  "grouped_split_test_accuracy": 0.1740909090909091,
+  "chance_accuracy": 0.02040816326530612,
+  "test_images_with_train_neighbor_within_5_idx": {
+    "random_split": 1.0,
+    "grouped_split": 0.10590909090909091
+  }
+}
